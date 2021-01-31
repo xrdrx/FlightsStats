@@ -16,7 +16,7 @@ public class TimeZoneProvider {
     public TimeZone getTimeZoneForCity(String city) {
         TimeZone timeZone = timeZones.get(city);
         if (timeZone == null) {
-            System.out.println("TimeZone not found!");
+            throw new IllegalArgumentException("TimeZone for provided city not found!");
         }
         return timeZone;
     }

@@ -26,8 +26,7 @@ class TimeZoneProviderTest {
 
     @Test
     public void TimeZoneUnknownCity() {
-        TimeZone tz = provider.getTimeZoneForCity("NotACity");
-        assertNull(tz);
+        assertThrows(IllegalArgumentException.class, () -> provider.getTimeZoneForCity("NotACity"));
     }
 
 }

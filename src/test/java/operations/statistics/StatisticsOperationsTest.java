@@ -1,4 +1,4 @@
-package operations;
+package operations.statistics;
 
 import operations.statistics.StatisticsOperations;
 import org.junit.jupiter.api.Test;
