@@ -7,6 +7,7 @@ import model.Ticket;
 import model.Tickets;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -20,17 +21,17 @@ public class JsonParser {
         this.gson = setUpTicketGson();
     }
 
-    public List<Ticket> getTicketsFromFileOrDefault(String filePath) throws FileNotFoundException {
-        if (filePath.isEmpty()) {
+    public List<Ticket> getTicketsFromFileOrDefault(String filePath) throws IOException {
+        if (filePath == null || filePath.isEmpty()) {
             return getDefaultTicketsList();
         }
-        FileReader reader = new FileReader(filePath);
+        FileReader reader = new FileReader(filePath, Charset.forName("UTF-8"));
         return gson.fromJson(reader, Tickets.class).getTickets();
     }
 
     public List<Ticket> getDefaultTicketsList() {
         InputStream resource = getClass().getClassLoader().getResourceAsStream("tickets.json");
-        InputStreamReader in = new InputStreamReader(resource);
+        InputStreamReader in = new InputStreamReader(resource, Charset.forName("UTF-8"));
         return gson.fromJson(in, Tickets.class).getTickets();
     }
 

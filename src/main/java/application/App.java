@@ -24,6 +24,7 @@ public class App {
 
         presenter.welcomeMessage();
         String filePath = scanner.nextLine();
+        scanner.close();
 
         List<Ticket> tickets;
         try {
